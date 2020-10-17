@@ -35,7 +35,13 @@
                         <h3 class="card-title">{{ i.0 }}</h3>
                         <p class="card-text text-muted">{{ i.1 }}</p>
                         <p class="card-text">{{ i.5 }}</p>
-                        <!-- <a href="{{ i.2 }}" class="btn btn-secondary">See {{ i.0 }} online</a> -->
+                        {% if "nan" not in i.6 %}<p class="card-text">{{ i.6 }}</p>{% endif %}
+                        <!-- <a href="{{ i.2 }}" class="btn btn-secondary">See official listing</a> -->
+                        <a href="{{ i.10 }}" class="btn btn-secondary" target="_blank">See official listing</a>
+                        {% if "nan" not in i.8 %}
+                        <a href="{{ i.8 }}" class="btn btn-secondary" target="_blank">{{ i.0 }}</a>
+                        {% endif %}
+                        <!-- {% if "nan" not in i.7 %}<p class="card-text">{{ i.7 }}</p>{% endif %} -->
                     </div>
                 </div>
                 {% endfor %}
