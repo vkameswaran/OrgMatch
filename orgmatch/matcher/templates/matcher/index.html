@@ -19,7 +19,7 @@
                 <input type="text" name="interests" id="interests" class="form-control" value="{{ interests }}" placeholder="e.g. swimming, climbing, chess, music" /><br />
                 <div class="row">
                         <div class="col-5"></div>
-                        <input type="submit" class="btn-primary col-2" />
+                        <input type="submit" class="btn-primary w-25" />
                         <div class="col-5"></div>
                 </div>
             </form>
@@ -28,7 +28,18 @@
         {% if results.any %}
         <div class="row my-5">
             <div class="col-2"></div>
-            <div class="col-8">{% for i in results %}{{ i.0 }}<br />{% endfor %}</div>
+            <div class="col-8">
+                {% for i in results %}
+                <div class="card row w-100 mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ i.0 }}</h3>
+                        <p class="card-text text-muted">{{ i.1 }}</p>
+                        <p class="card-text">{{ i.5 }}</p>
+                        <!-- <a href="{{ i.2 }}" class="btn btn-secondary">See {{ i.0 }} online</a> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             <div class="col-2"></div>
         </div>
         {% endif %}
