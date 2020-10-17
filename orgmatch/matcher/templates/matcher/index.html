@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Rate My Schedule</title>
+    <title>Org Match</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <div class="container w-100">
-        <div class="row mt-5 justify-content-center"><h1 class="display-4">Rate My Schedule</h1></div>
-        <div class="row justify-content-center">A tool to help plan course registration at Georgia Tech</div>
+        <div class="row mt-5 justify-content-center"><h1 class="display-4">Org Match</h1></div>
+        <div class="row justify-content-center">A tool to help students find organizations at Georgia Tech</div>
         <div class="row my-5 w-100">
             <div class="col-2"></div>
             <form action="/" method="GET" class="w-100 col-8">
-                <label for="courses">Enter a comma-separated list of classes:</label>
-                <input type="text" name="courses" id="courses" class="form-control" value="{{ courses }}" placeholder="e.g. PSYC 1101, MATH 1554, CS 2050" /><br />
+                <label for="interests">Enter a list of your interests:</label>
+                <input type="text" name="interests" id="interests" class="form-control" value="{{ interests }}" placeholder="e.g. swimming, climbing, chess, music" /><br />
                 <div class="row">
                         <div class="col-5"></div>
                         <input type="submit" class="btn-primary col-2" />
@@ -25,10 +25,10 @@
             </form>
             <div class="col-2"></div>
         </div>
-        {% if info %}
+        {% if results.any %}
         <div class="row my-5">
             <div class="col-2"></div>
-            <div class="text-info col-8">{% for i in info %}{{ i }}<br />{% endfor %}</div>
+            <div class="col-8">{% for i in results %}{{ i.0 }}<br />{% endfor %}</div>
             <div class="col-2"></div>
         </div>
         {% endif %}

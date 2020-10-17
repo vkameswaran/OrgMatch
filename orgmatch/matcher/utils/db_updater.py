@@ -13,7 +13,7 @@ df = df[['name', 'category', 'moreInfoURL', 'logoURL', 'id', 'description', 'mem
 full_descs = []
 for name, description in zip(df.name, df.description):
     full_desc = str(name) + "\n" + str(description)
-    full_descs.append(full_desc)
+    full_descs.append(full_desc.lower())
 df["full_desc"] = full_descs
 
 df.to_csv("data.csv")

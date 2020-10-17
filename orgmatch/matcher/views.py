@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from .utils.grades import findInfo
+from .utils.matching import *
 
 # Create your views here.
 
 def index(request):
     context = {
-        "courses": "",
+        "interests": "",
     }
-    if ("courses" in request.GET and request.GET["courses"]):
+    if ("interests" in request.GET and request.GET["interests"]):
         # TODO: Check if I need to clean this input
-        returnText = findInfo(request.GET["courses"])
-        context["info"] = returnText
-        context["courses"] = request.GET["courses"]
-    return render(request, 'ratings/index.html', context=context)
+        interests = request.GET["interests"].replace(",", "").replace("  ", " ").strip().split(" ")
+        context["results"] = get_results(rank_against_keywords(interests), 10)
+        context["interests"] = request.GET["interests"]
+    return render(request, 'matcher/index.html', context=context)
