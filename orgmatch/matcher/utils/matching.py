@@ -24,5 +24,5 @@ def rank_against_keyword(keyword):
 
 def get_results(df, num_results):
     temp_results = df.head(num_results)
-    temp_results["new_url"] = temp_results["name"].apply(lambda x : "https://gatech.campuslabs.com/engage/organization/" + x.lower().replace("@", "").replace("  ", " ").replace(" ", "-"))
+    temp_results["new_url"] = temp_results["name"].apply(lambda x : "https://gatech.campuslabs.com/engage/organization/" + x.lower().replace("@", "").replace("'", "").replace("  ", " ").replace(" ", "-"))
     return temp_results.values
