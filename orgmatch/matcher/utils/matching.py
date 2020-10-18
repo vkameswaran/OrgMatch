@@ -16,7 +16,9 @@ def rank_against_keywords(list_of_keywords):
                 for keyword in nlp(" ".join(list_of_keywords).lower())
                 ]))
         return sims
-    sorted_df = orgs_df.sort_values("full_desc", ascending=False, key=search)
+    sorted_df = orgs_df.copy()
+    sorted_df["match_results"] = search(sorted_df.full_desc)
+    sorted_df = sorted_df.sort_values("match_results", ascending=False)
     return sorted_df
 
 def rank_against_keyword(keyword):
@@ -27,10 +29,13 @@ def rank_against_keyword(keyword):
                 desc.count(nlp(keyword.lower())[0].lemma_)
                 )
         return sims
-    sorted_df = orgs_df.sort_values("full_desc", ascending=False, key=search)
+    sorted_df = orgs_df.copy()
+    sorted_df["match_results"] = search(sorted_df.full_desc)
+    sorted_df = sorted_df.sort_values("match_results", ascending=False)
     return sorted_df
 
 def get_results(df, num_results):
     temp_results = df.head(num_results).copy()
+    temp_results = temp_results[temp_results.match_results != 0]
     temp_results["new_url"] = temp_results["name"].apply(lambda x : "https://gatech.campuslabs.com/engage/organization/" + x.lower().replace("@", "").replace("'", "").replace("  ", " ").replace(" ", "-"))
     return temp_results.values

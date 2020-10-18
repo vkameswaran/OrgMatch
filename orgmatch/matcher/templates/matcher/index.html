@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Org Match</title>
+    <title>{% if interests %}Search Results for {{ interests }} | {% endif %}Org Match</title>
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
@@ -45,6 +45,17 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% if results.shape.0 == 10 %}
+                <p>Use fewer/more specific search terms to see more specific results.</p>
+                {% endif %}
+            </div>
+            <div class="col-2"></div>
+        </div>
+        {% elif interests %}
+        <div class="row my-5">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <p>Sorry, we didn't find any good results for your search term(s).</p>
             </div>
             <div class="col-2"></div>
         </div>
