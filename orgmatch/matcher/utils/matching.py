@@ -1,10 +1,13 @@
+import numpy as np
 import pandas as pd
 import spacy
-
+import pickle
 nlp = spacy.load("en_core_web_sm")
 
-orgs_df = pd.read_csv("matcher/utils/data.csv", index_col="Unnamed: 0")
+# orgs_df = pd.read_csv("matcher/utils/data.csv", index_col="Unnamed: 0")
 
+with open("matcher/utils/data.pkl", 'rb') as f:
+    orgs_df = pickle.load(f)
 # Compare to given keywords
 
 def rank_against_keywords(list_of_keywords):

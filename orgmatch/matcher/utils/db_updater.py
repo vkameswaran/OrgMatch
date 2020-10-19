@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import numpy as np
 import spacy
+import pickle
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -21,4 +22,6 @@ for name, description in zip(df.name, df.description):
 df["full_desc"] = full_descs
 
 df.to_csv("data.csv")
+with open("data.pkl", 'wb') as fh:
+    pickle.dump(df, fh)
 print("Database update successful.")
